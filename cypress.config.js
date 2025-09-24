@@ -4,7 +4,6 @@ const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild");
 
 async function setupNodeEvents(on, config) {
-
   await preprocessor.addCucumberPreprocessorPlugin(on, config);
   config.env.tags = process.env.TAGS || config.env.tags || "";
   on(
@@ -13,15 +12,11 @@ async function setupNodeEvents(on, config) {
       plugins: [createEsbuildPlugin.default(config)],
     })
   );
-
   return config;
 }
 
-
 module.exports = defineConfig({
-  env: {
-    tags: "",
-  },
+  env: { tags: "" },
   e2e: {
     setupNodeEvents,
     specPattern: "cypress/journeys/**/features/**/*.feature",

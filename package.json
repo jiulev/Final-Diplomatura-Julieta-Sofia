@@ -3,45 +3,38 @@
   "version": "1.0.0",
   "description": "Cypress Automation project with cucumber and API testing support.",
   "main": "index.js",
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/journeys/step_definitions/**/*.{js,ts}"
+    ],
+    "json": { "enabled": true, "output": "jsonlogs/cucumber-report.json" },
+    "messages": { "enabled": true, "output": "jsonlogs/messages.ndjson" },
+    "html": { "enabled": false }
+  },
   "scripts": {
     "cypress:open:dev:chrome": "cypress open --e2e --browser chrome -e ENV=DEV",
-    "cypress:open:dev:edge": "cypress open --e2e --browser edge -e ENV=DEV", 
+    "cypress:open:dev:edge": "cypress open --e2e --browser edge -e ENV=DEV",
     "cypress:open:dev:firefox": "cypress open --e2e --browser firefox -e ENV=DEV",
-    "cypress:runner:e2e:dev": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser chrome -e ENV=DEV",  
-    "cypress:runner:e2e:dev:edge": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser edge -e ENV=DEV",  
-
-
-
+    "cypress:runner:e2e:dev": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser chrome -e ENV=DEV",
+    "cypress:runner:e2e:dev:edge": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser edge -e ENV=DEV",
     "cypress:open:tst": "cypress open --e2e --browser chrome -e ENV=TST",
     "cypress:open:tst:chrome": "cypress open --e2e --browser chrome -e ENV=TST",
-    "cypress:open:tst:edge": "cypress open --e2e --browser edge -e ENV=TST", 
+    "cypress:open:tst:edge": "cypress open --e2e --browser edge -e ENV=TST",
     "cypress:open:tst:firefox": "cypress open --e2e --browser firefox -e ENV=TST",
-
-
     "cypress:runner:e2e:tst": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser chrome -e ENV=TST",
-  
-
-    "cypress:test:all" : "npm-run-all cypress:runner:e2e:dev cypress:runner:e2e:dev:edge"
+    "cypress:test:all": "npm-run-all cypress:runner:e2e:dev cypress:runner:e2e:dev:edge",
+    "report": "node cucumber-html-report.js",
+    "test:with-report": "cypress run --browser chrome -e ENV=DEV && npm run report"
   },
-  "keywords": [
-    "Cypress",
-    "Gherkin",
-    "Cucumber",
-    "API",
-    "E2E",
-    "Testing",
-    "Automation"
-  ],
+  "keywords": ["Cypress", "Gherkin", "Cucumber", "API", "E2E", "Testing", "Automation"],
   "author": "Kiuvi Services",
   "license": "ISC",
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@badeball/cypress-cucumber-preprocessor": "^22.2.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
     "@cucumber/cucumber": "^11.2.0",
-    "@faker-js/faker": "^9.6.0",
-    "cypress": "^14.2.1",
-    "cypress-automation-framework": "file:",
-    "cypress-cucumber-preprocessor": "^4.3.1",
+    "@faker-js/faker": "^9.9.0",
+    "cypress": "^14.5.4",
     "cypress-plugin-api": "^2.11.1",
     "esbuild": "latest",
     "eslint": "^9.22.0",
