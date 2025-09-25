@@ -24,7 +24,8 @@
     "cypress:runner:e2e:tst": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser chrome -e ENV=TST",
     "cypress:test:all": "npm-run-all cypress:runner:e2e:dev cypress:runner:e2e:dev:edge",
     "report": "node cucumber-html-report.js",
-    "test:with-report": "cypress run --browser chrome -e ENV=DEV && npm run report"
+    "test:with-report": "cypress run --browser chrome -e ENV=DEV && npm run report",
+    "test:with-report1": "rimraf cucumber-report && cypress run --browser chrome --headless"
   },
   "keywords": ["Cypress", "Gherkin", "Cucumber", "API", "E2E", "Testing", "Automation"],
   "author": "Kiuvi Services",

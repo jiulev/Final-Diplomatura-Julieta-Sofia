@@ -13,4 +13,3 @@ Feature: Petstore - CRUD básico de mascotas
     Given ya existe una mascota creada en Petstore
     When elimino la mascota creada
     Then al consultar por id obtengo 404
-

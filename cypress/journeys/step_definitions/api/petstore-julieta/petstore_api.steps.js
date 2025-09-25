@@ -88,7 +88,6 @@ When('creo una nueva mascota con datos generados', () => {
 })
 
 Then('puedo consultar esa mascota por su id y obtener status 200', () => {
-  // espera activa hasta que aparezca
   waitForPetToExist(petId).its('status').should('eq', 200)
 })
 
@@ -117,7 +116,7 @@ When('elimino la mascota creada', () => {
   // primero nos aseguramos que existe
   waitForPetToExist(petId)
 
-  // el DELETE en esta API pública es flaky, no asertamos el status aquí
+  // el DELETE en esta API pública es flaky: no asertamos el status aquí
   cy.request({
     method: 'DELETE',
     url: `${baseUrl}/pet/${petId}`,
@@ -127,6 +126,5 @@ When('elimino la mascota creada', () => {
 })
 
 Then('al consultar por id obtengo 404', () => {
-  // validamos la eliminación con polling
   waitForPetToBeGone(petId).its('status').should('eq', 404)
 })
