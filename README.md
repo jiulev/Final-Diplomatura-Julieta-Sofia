@@ -1,6 +1,6 @@
 ⏩ **Proyecto de Automatización Cypress – Book Store Login**
 
-Este proyecto automatiza el login de la demo **Book Store** (https://demoqa.com/login) utilizando **Cypress 14.5.4** junto con **Cucumber/Gherkin** para la escritura de escenarios y el patrón **Page Object Model (POM)**.
+Este proyecto automatiza el login de la demo **Book Store** (https://demoqa.com/login) utilizando **Cypress ** junto con **Cucumber/Gherkin** para la escritura de escenarios y el patrón **Page Object Model (POM)**.
 El flujo incluye la **creación de un usuario real vía API**, el **login exitoso** con ese usuario y un **login fallido** con credenciales no registradas, todo con datos generados dinámicamente mediante **Scenario Outline**.
 
 📝**Generar Reporte**
@@ -19,6 +19,16 @@ Dentro de esa estructura, yo agregué **nuevos archivos** y una **carpeta `ui`**
 ✅ **cypress/journeys/features/e2e/bookstore_login.feature**
 Contiene los escenarios Gherkin:
 ✅ **cypress/journeys/features/api/petstore-julieta**
+
+✅ **cypress/pages/demoqa/ProfilePage.js** Sirve para validar que el usuario logueado sea el esperado.
+**cypress/pages/demoqa/LoginPage.js** Encapsula acciones típicas: escribir usuario/contraseña, hacer clic en Login y leer el mensaje de error.
+**cypress/pages/demoqa/registerPage.js** sirve para automatizar la creación de un usuario
+**cypress/pages/demoqa/SucessPage.js** Modela la pantalla de confirmación que aparece después de enviar el formulario de registro.
+Permite validar que el mensaje de éxito efectivamente se muestre.
+**cypress\pages\lambdatest\InputFormPage.js** Page Object Model (POM) para el formulario de LambdaTest Input Form.busca la URL en cypress.env.json bajo la clave url_lambdatest_form.
+
+Si no existe, usa la URL por defecto.para poder cambiar entornos (DEV, TST, PROD) sin tocar el código. cada campo del formulario representado por su id (#name, #inputEmail4, etc.). cerrar cokies, asegura que el form este visible 
+
 
 - **Background**: crea un usuario válido por API antes de cada escenario.
 - **Scenario Outline 1 – Login con credenciales válidas**: usa el usuario creado dinámicamente.
